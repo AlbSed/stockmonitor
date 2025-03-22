@@ -20,18 +20,14 @@ A real-time stock market monitoring application that tracks stock prices, provid
 
 ## Configuration
 
-1. Create a `.env` file in the project root with your Alpha Vantage API key:
-```env
-ALPHA_VANTAGE_API_KEY=your_api_key_here
-```
+Create a `.env` file in the project root with your configuration:
 
-2. Configure stock symbols in `config.yaml`:
-```yaml
-symbols:
-  - AAPL
-  - GOOGL
-  - MSFT
-  - AMZN
+```env
+# Required: Alpha Vantage API key for additional data source
+ALPHA_VANTAGE_API_KEY=your_api_key_here
+
+# Optional: Configure stock symbols (defaults to AAPL, GOOGL, MSFT, AMZN)
+STOCK_SYMBOLS=AAPL,GOOGL,MSFT,AMZN
 ```
 
 ## Installation
@@ -78,8 +74,7 @@ stocks_watcher/
 ├── docker-compose.yml     # Docker Compose configuration
 ├── Dockerfile            # Docker configuration
 ├── requirements.txt      # Python dependencies
-├── config.yaml          # Application configuration
-├── .env                 # Environment variables
+├── .env                 # Environment variables and configuration
 ├── data/               # Data storage directory
 ├── logs/               # Log files directory
 ├── clients/            # Data source clients
