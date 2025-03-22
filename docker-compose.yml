@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    environment:
+      - ALPHA_VANTAGE_API_KEY=${ALPHA_VANTAGE_API_KEY}
+      - PYTHONPATH=/app
+    command: >
+      sh -c "python stock_monitor.py --one-time && streamlit run app.py --server.address 0.0.0.0"
+    healthcheck:
+      test: ["CMD", "test", "-f", "/app/data/stock_data.db"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s 
